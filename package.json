@@ -1,0 +1,16 @@
+{
+  "name": "coding_challenge",
+  "version": "1.0.0",
+  "description": "Coding challenge for application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node express_server",
+    "frontend": "npm start --prefix front-end/"
+  },
+  "author": "Jake Nolder",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs-extra": "^8.1.0"
+  }
+}

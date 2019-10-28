@@ -1,0 +1,22 @@
+{
+    "name": "ATO Tax Tables",
+    "description": "This extension is used in conjunction with the coding challenge.",
+    "version": "1.0.0",
+
+    "content_scripts": [{
+        "matches": ["https://www.ato.gov.au/Rates/Individual-income-tax-for-prior-years/"],
+        "exclude_matches": [],
+        "run_at": "document_end",
+        "css": [
+            "css/style.css"
+        ],
+        "js": [
+            "js/jquery-3.4.1.js",
+            "js/mark_tax_tables.js"
+        ]
+    }],
+
+    "permissions": [],
+
+    "manifest_version": 2
+}
