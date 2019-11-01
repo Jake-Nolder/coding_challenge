@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 // Import Bootstrap Theme Components
@@ -10,12 +10,12 @@ import EnterPaySlip from './screens/EnterPayslip';
 import GeneratePaySlip from './screens/GeneratePayslip';
 
 // Import Custom Libraries
-import calcPayslip from './libraries/payslip_calculation.js';
+import calcPayslip from './libraries/payslip_calculation.js.js';
 
 // Import CSS Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
 

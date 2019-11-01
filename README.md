@@ -19,7 +19,7 @@ Run the below command in order to install the dependencies of the front-end and 
 ```node
 cd coding_challenge
 npm install
-cd front_end
+cd client
 npm install
 ```
 

@@ -1,5 +1,5 @@
 // Import custom libraries
-import dataType from './check_data_types.js';
+import dataType from './check_data_types.js.js';
 
 // Set libraries from CDN added to index.html
 let moment = window.moment;
