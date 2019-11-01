@@ -53,7 +53,6 @@ app.post('/payslip/save', (req, res) => {
         res.json(response);
       });
   } else {
-    console.log(check); // Leave for errors
     res.json({
       status: 'failed',
       details: 'The payslip information did not match the expected data structure. Please check with site administrator.',
@@ -62,7 +61,7 @@ app.post('/payslip/save', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Backend service running at http://localhost:${port}/`);
+  console.log(`Backend service running at http://localhost:${port}/`); // Leave for UI help
 });
 
 async function writePayslip(file, data) {
@@ -104,36 +103,29 @@ function verifyData(verify_obj, data_obj) {
     return false;
   }
 
+  let isSame = true;
+
   Object.keys(verify_obj).forEach((key) => {
-    if (dataType.getType(verify_obj[key]) === dataType.getType(data_obj[key])) {
-      // (Above) Make sure both exist and are the same data type.
-      if (dataType.getType(verify_obj[key]) === 'object') {
-        const check = verifyData(verify_obj[key], data_obj[key]);
-        if (check === false) {
-          console.log(check);
-          return false;
-        }
-      } else if (!(dataType[verify_obj[key]](data_obj[key]))) {
-        console.log({
-          error: 'data_type_mismatch',
-          details: `The 'data_obj' key '${key}' and the 'verify_obj' key '${key}' exist but do not match.`,
-          expected: verify_obj[key],
-          received: dataType.getType(data_obj[key]),
-        });
-        return false;
+    // (Above) Make sure both exist and are the same data type.
+
+    if (dataType.getType(verify_obj[key]) === 'isObject') {
+      const check = verifyData(verify_obj[key], data_obj[key]);
+      if (check === false) {
+        isSame = false;
       }
-    } else {
+    } else if (!(dataType[verify_obj[key]](data_obj[key]))) {
       console.log({
         error: 'data_type_mismatch',
-        details: `The 'data_obj' key '${key}' data type and the 'verify_obj' key '${key}' datatype do not match or may not exist.`,
+        details: `The 'data_obj' key '${key}' and the 'verify_obj' key '${key}' exist but do not match.`,
         expected: verify_obj[key],
         received: dataType.getType(data_obj[key]),
       });
-      return false;
+      isSame = false;
     }
 
-    return true;
+    return isSame;
   });
 
-  return true;
+  return isSame;
 }
+

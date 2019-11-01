@@ -4,7 +4,8 @@
   "description": "Coding challenge for application",
   "main": "index.js",
   "scripts": {
-    "start": "node express_server"
+    "server": "node ./server/express_server",
+    "client": "npm start dev --prefix './client/'"
   },
   "author": "Jake Nolder",
   "license": "ISC",

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 // Import Bootstrap Theme Components
@@ -10,12 +10,12 @@ import EnterPaySlip from './screens/EnterPayslip';
 import GeneratePaySlip from './screens/GeneratePayslip';
 
 // Import Custom Libraries
-import calcPayslip from './libraries/payslip_calculation.js.js';
+import calcPayslip from './libraries/payslip_calculation.js';
 
 // Import CSS Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-class App extends Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
 
@@ -39,7 +39,6 @@ class App extends Component {
         });
         return calcPayslip(data)
             .then((payslip) => {
-                console.log(payslip);
                 self.setState({
                     "isGenerating": false,
                     "isGenerated": true,

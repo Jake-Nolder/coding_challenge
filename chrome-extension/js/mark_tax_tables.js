@@ -20,7 +20,8 @@ $(document).ready(() => {
       .parents('table')
       .find('caption')
       .text()
-      .replace(/[^0-9–-]+/g, '');
+      .replace(/\–/g, '-')
+      .replace(/[^0-9\-]+/g, '');
 
     $(dom).children('a').attr({
       download: `${filename}.json`,

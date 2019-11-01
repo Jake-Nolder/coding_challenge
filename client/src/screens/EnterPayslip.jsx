@@ -13,6 +13,9 @@ import * as yup from 'yup';
 // Import Custom CSS styles
 import './EnterPayslip.css';
 
+// Set libraries from CDN added to index.html
+let moment = window.moment;
+
 class EnterPaySlip extends React.Component {
     constructor(props) {
         super(props);
@@ -25,26 +28,40 @@ class EnterPaySlip extends React.Component {
         });
 
         this.initial_values = {
-            first_name: "John",
-            last_name: "Smith",
-            salary: 60050,
-            superannuation: 9
+            first_name: "",
+            last_name: "",
+            salary: "",
+            superannuation: ""
         };
+
+        // this.initial_values = {
+        //     first_name: "John",
+        //     last_name: "Smith",
+        //     salary: 60050,
+        //     superannuation: 9
+        // };
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(values, actions) {
+
         this.props.generatePayslip({
             "first_name": values.first_name,
             "last_name": values.last_name,
             "salary_amount": values.salary,
             "salary_frequency": "annual",
             "superannuation_rate": values.superannuation,
-            "payroll_year": 2013,
-            "payroll_month": 2, // 0 index baced
+            "current_year": moment().year(),
+            "payroll_month": moment().month(), // 0 index baced
             "pay_frequency": "monthly"
+        }).catch((err) => {
+            console.log(err.details);
+            actions.setErrors({
+                "generate": err.details
+            });
         });
+
         actions.setSubmitting(false);
     }
 
@@ -140,12 +157,28 @@ class EnterPaySlip extends React.Component {
                                 </InputGroup>
                             </Form.Group>
                         </Form.Row>
-                        <Button 
-                            className={"float-right"}
-                            disabled={!(Object.keys(errors).length === 0) || isSubmitting}
-                            type="submit"
-                            variant="primary"
-                        >Generate Payslip</Button>
+                        <Form.Group>
+                            <Button 
+                                className={"float-right"}
+                                disabled={!(Object.keys(errors).length === 0) || isSubmitting}
+                                type="submit"
+                                variant="primary"
+                            >Generate Payslip</Button>
+                        </Form.Group>
+                        <Form.Group>
+                                <Form.Control
+                                    name="generate"
+                                    type="hidden"
+                                    isValid={!errors.generate}
+                                    isInvalid={errors.generate}
+                                ></Form.Control>
+                                <Form.Control.Feedback type="valid">
+                                    {values.generate}
+                                </Form.Control.Feedback>
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.generate}
+                                </Form.Control.Feedback>
+                            </Form.Group>
                     </Form>
                 )}
             </Formik>

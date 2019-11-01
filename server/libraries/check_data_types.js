@@ -30,18 +30,18 @@ const dataType = {
   },
   getType: (o) => {
     const TYPES = {
-      undefined: 'undefined',
-      number: 'number',
-      boolean: 'boolean',
-      string: 'string',
-      '[object Function]': 'function',
-      '[object RegExp]': 'regexp',
-      '[object Array]': 'array',
-      '[object Date]': 'date',
-      '[object Error]': 'error',
+      undefined: 'isUndefined',
+      number: 'isNumber',
+      boolean: 'isBoolean',
+      string: 'isString',
+      '[object Function]': 'isFunction',
+      '[object RegExp]': 'isRegexp',
+      '[object Array]': 'isArray',
+      '[object Date]': 'isDate',
+      '[object Error]': 'isError',
     };
     const TOSTRING = Object.prototype.toString;
-    return TYPES[typeof o] || TYPES[TOSTRING.call(o)] || (o ? 'object' : 'null');
+    return TYPES[typeof o] || TYPES[TOSTRING.call(o)] || (o ? 'isObject' : 'null');
   },
 };
 
