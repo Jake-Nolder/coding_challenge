@@ -35,6 +35,7 @@ npm start server
 ```
 
 Please consider running the tests under the heading Testing first before running the following command.
+
 Terminal 2 start command
 ```node
 npm start client
