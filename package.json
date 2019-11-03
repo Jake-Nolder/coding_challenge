@@ -4,18 +4,14 @@
   "description": "Coding challenge for application",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm install --prefix ./server && npm install --prefix ./client",
     "server": "node ./server/express_server",
-    "client": "npm start dev --prefix './client/'"
+    "client": "npm start --prefix './client/'",
+    "test": "npm run test --prefix './client/'"
   },
   "author": "Jake Nolder",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.16.0"
-  },
+  "devDependencies": {},
   "dependencies": {},
   "repository": {
     "type": "git",

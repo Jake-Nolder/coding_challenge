@@ -21,7 +21,7 @@ class GeneratePaySlip extends React.Component {
         // Identify Custom Functions
         this.handleSubmit = this.handleSubmit.bind(this);
         this.savePayslip = this.props.savePayslip;
-        this.handleClick = this.handleClick;
+        this.handleClick = this.handleClick.bind(this);
 
         // Identify global variables
         this.payslip = this.props.payslip;
